@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallBehaviour : MonoBehaviour
+public class CubeBehaviour : MonoBehaviour
 {
     public float XRotation = 0;
     public float YRotation = 1;
