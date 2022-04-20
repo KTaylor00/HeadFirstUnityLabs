@@ -19,5 +19,11 @@ public class BallBehaviour : MonoBehaviour
     {
         Vector3 axis = new Vector3(XRotation, YRotation, ZRotation);
         transform.RotateAround(Vector3.zero, axis, DegreesPerSecond * Time.deltaTime);
+        XRotation += 2 * Time.deltaTime;
+
+        if (XRotation > 2)
+        {
+            XRotation = 1;
+        }
     }
 }
