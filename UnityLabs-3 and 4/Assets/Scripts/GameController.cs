@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public Text ScoreText;
+    public Button PlayAgainButton;
     public GameObject OneBallPrefab;
     public int Score;
-    public bool GameOver = false;
+    public bool GameOver = true;
     public int NumberOfBalls;
     public int MaxBalls = 15;
 
@@ -28,18 +31,30 @@ public class GameController : MonoBehaviour
         {
             Instantiate(OneBallPrefab);
             NumberOfBalls++;
+            if (NumberOfBalls >= MaxBalls)
+            {
+                GameOver = true;
+                PlayAgainButton.gameObject.SetActive(true);
+            }
         }
+    }
 
-        if (NumberOfBalls == MaxBalls)
+    public void StartGame()
+    {
+        foreach (GameObject ball in GameObject.FindGameObjectsWithTag("GameController"))
         {
-            GameOver = true;
+            Destroy(ball);
         }
 
+        Score = 0;
+        NumberOfBalls = 0;
+        PlayAgainButton.gameObject.SetActive(false);
+        GameOver = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        ScoreText.text = Score.ToString();
     }
 }
